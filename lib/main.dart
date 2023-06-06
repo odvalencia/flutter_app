@@ -73,34 +73,33 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color:  Colors.deepPurple,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              decoration: const  BoxDecoration(
+                color: Colors.deepPurple,
               ),
-              child: Text(
-                'ODALIS VALENCIA',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
+              accountEmail: const Text("odvalencia1@espe.edu.ec"),
+              accountName: const  Text("ODALIS VALENCIA"),
+              currentAccountPicture: ClipRRect(
+                borderRadius: BorderRadius.circular(80),
+                child:Image.asset("assets/ODALISVALENCIA.jpg"),) 
             ),
-            ListTile(
+            const  ListTile(
               leading: Icon(Icons.account_circle),
               title: Text('Perfil'),
             ),
-            ListTile(
+            const  ListTile(
               leading: Icon(Icons.settings),
               title: Text('Ajustes'),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(Icons.logout),
               title: Text('Cerrar sesión'),
             ),
           ],
         ),
       ),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
