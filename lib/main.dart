@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'widget/factura.dart';
+import 'widget/producto.dart';
+import 'widget/cliente.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -55,13 +59,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  int _currentIndex = 0;
+  List <Widget> pageList= const<Widget>[
+    Factura(),
+    Producto(),
+    Cliente()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -99,38 +102,62 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'BINEVENIDO',
-            ),
-            const SizedBox(
-              height: 50, // <-- SEE HERE
-            ),
-            const Text(
-              'ODALIS VALENCIA',
-            ),
-            const SizedBox(
-              height: 50, // <-- SEE HERE
-            ),
-            const Text(
-              'Veces presionado:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+      body: pageList[_currentIndex],
+      bottomNavigationBar:BottomNavigationBar(
+        iconSize: 30,
+        selectedFontSize: 14,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag_rounded),
+            label: 'Facturas',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sell),
+            label: 'Productos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Clientes',
+          ),
+        ],
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          switch (index) {
+            case 0:
+              // only scroll to top when current index is selected.
+              
+            case 1:
+              
+          }
+          setState(
+            () {
+              _currentIndex = index;
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed:(){showModal(context); },
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  void showModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        content: const Text('Añadir '),
+        actions: <TextButton>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Cerrar'),
+          )
+        ],
+      ),
+    );
+  }
 }
+
