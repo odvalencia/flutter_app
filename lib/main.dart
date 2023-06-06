@@ -70,6 +70,37 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: const <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color:  Colors.deepPurple,
+              ),
+              child: Text(
+                'ODALIS VALENCIA',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text('Perfil'),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Ajustes'),
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Cerrar sesión'),
+            ),
+          ],
+        ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
